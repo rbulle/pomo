@@ -60,4 +60,4 @@ It has only been tested on MacOS Big Sur (11.6) and very likely won't work on ot
 
 ## License
 
-Please do whatever you want with this.
+Please do whatever you want with this (CC0 1.0 Universal).
