@@ -19,7 +19,7 @@ Then, 3 choices:
 
         bash pomo
 
-2) Make it executable:
+2) Make it executable:  
 
         chmod +x pomo
 
@@ -27,13 +27,13 @@ and then run it (from the cloned directory):
 
         ./pomo
 
-3) Add the location (absolute path) of the directory `pomo/` to your `.bashrc`, source it:
+3) Add the location (absolute path) of the directory `pomo/` to your `.bashrc`, source it:  
 
         source ~/.bashrc
 
 and run pomo from any directory with:
 
-        pomo
+            pomo
 
 ## How does it work ?
 
