@@ -8,32 +8,32 @@ Pomo is a little bash script I have written in order to launch pomodoro sessions
 
 First git clone this repository:
 
-    git clone https://github.com/rbulle/pomo.git
+        git clone https://github.com/rbulle/pomo.git
 
 Go to the cloned directory:
 
-    cd pomo/
+        cd pomo/
 
 Then, 3 choices:
 1) Run pomo directly (from the cloned directory):
 
-    bash pomo
+        bash pomo
 
 2) Make it executable:
 
-    chmod +x pomo
+        chmod +x pomo
 
 and then run it (from the cloned directory):
 
-    ./pomo
+        ./pomo
 
 3) Add the location (absolute path) of the directory `pomo/` to your `.bashrc`, source it:
 
-    source ~/.bashrc
+        source ~/.bashrc
 
 and run pomo from any directory with:
 
-    pomo
+        pomo
 
 ## How does it work ?
 
