@@ -23,7 +23,7 @@ Then, 3 choices:
 
         chmod +x pomo
 
-and then run it (from the cloned directory):
+    and then run it (from the cloned directory):
 
         ./pomo
 
@@ -31,9 +31,9 @@ and then run it (from the cloned directory):
 
         source ~/.bashrc
 
-and run pomo from any directory with:
+    and run pomo from any directory with:
 
-            pomo
+        pomo
 
 ## How does it work ?
 
