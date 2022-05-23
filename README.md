@@ -8,11 +8,11 @@ Pomo is a little bash script I have written in order to launch pomodoro sessions
 
 First git clone this repository:
 
-        git clone https://github.com/rbulle/pomo.git
+    git clone https://github.com/rbulle/pomo.git
 
 Go to the cloned directory:
 
-        cd pomo/
+    cd pomo/
 
 Then, 3 choices:
 1) Run pomo directly (from the cloned directory):
