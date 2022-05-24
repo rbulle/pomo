@@ -47,6 +47,7 @@ do
     echo "Starting $pomo_duration min pomo!"
     osascript -e 'display notification with title "Time to work!"'
     sleep "$(($pomo_duration*60))"
+    i=$(( $i + 1))
     if (($i % $intervals == 0 ))
     then
         afplay $lbreak_sound
@@ -59,6 +60,5 @@ do
        osascript -e 'display notification with title "Time for a short break!"'
        sleep "$(($sbreak_duration*60))" 
     fi
-    i=$(( $i + 1))
 done
 
