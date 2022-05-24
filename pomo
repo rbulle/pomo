@@ -1,48 +1,62 @@
 #!/bin/bash
 
+sounds_dir="/System/Library/PrivateFrameworks/ScreenReader.framework/Versions/A/Resources/Sounds/"
+pomo_sound="${sounds_dir}DrillOut.aiff"
+sbreak_sound="${sounds_dir}DrillIn.aiff"
+lbreak_sound="${sounds_dir}Alert.aiff"
+end_sound="${sounds_dir}WebPageLoaded.aiff"
+
 set -e # Considered as bad practice but will do for now
 
 trap ctrl_c INT
 
 function ctrl_c()
 {
-    echo -e "\nCongratulations you have completed $(($i - 1)) pomos and worked for $((($i-1)*$pomo_duration)) min!"
+    worktime_rough=$((($i - 1) * $pomo_duration))
+    worktime_hour=$(($worktime_rough / 60))
+    worktime_min=$(($worktime_rough % 60))
+    afplay $end_sound 
+    echo -e "\nCongratulations! You have completed $(($i - 1)) pomos and worked for at least $worktime_hour h $worktime_min min!"
 }
 
-if test -z "$1"
+if [[ "$1" == "help" ]]
 then
     echo -e "Usage:\n$( basename $0 ) <pomo duration in minutes> <short break duration in minutes> <long break duration in minutes> <number of pomos between long breaks>" >&2
     exit 1
 fi
 
-sounds_dir="/System/Library/PrivateFrameworks/ScreenReader.framework/Versions/A/Resources/Sounds/"
-pomo_duration=$1
-pomo_sound="${sounds_dir}DrillOut.aiff"
-sbreak_duration=$2
-sbreak_sound="${sounds_dir}DrillIn.aiff"
-lbreak_duration=$3
-lbreak_sound="${sounds_dir}Alert.aiff"
-intervals=$4
+if test -z "$1"
+then
+    pomo_duration="25"
+    sbreak_duration="5"
+    lbreak_duration="15"
+    intervals="4"
+else
+    pomo_duration=$1
+    sbreak_duration=$2
+    lbreak_duration=$3
+    intervals=$4
+fi
 
-echo -e "Let's work!\nPomos duration:\t\t $pomo_duration min\nShort breaks duraction:\t $sbreak_duration min\nLong breaks duration:\t $lbreak_duration min\nLong breaks every:\t $intervals pomos."
+echo -e "Let's work!\nPomos duration:\t\t $pomo_duration min\nShort breaks duraction:\t $sbreak_duration min\nLong breaks duration:\t $lbreak_duration min\nLong breaks every:\t $intervals pomos"
 
 i=1
 while :
 do
-    echo "Starting $pomo_duration min pomo!"
     afplay $pomo_sound 
+    echo "Starting $pomo_duration min pomo!"
     osascript -e 'display notification with title "Time to work!"'
     sleep "$(($pomo_duration*60))"
     if (($i % $intervals == 0 ))
     then
-        echo "$lbreak_duration min long break!"
         afplay $lbreak_sound
+        echo "$lbreak_duration min long break!"
         osascript -e 'display notification with title "Time for a long break!"'
         sleep "$(($lbreak_duration*60))" 
     else
-       echo "$sbreak_duration min short break!"
        afplay $sbreak_sound
-        osascript -e 'display notification with title "Time for a short break!"'
+       echo "$sbreak_duration min short break!"
+       osascript -e 'display notification with title "Time for a short break!"'
        sleep "$(($sbreak_duration*60))" 
     fi
     i=$(( $i + 1))
